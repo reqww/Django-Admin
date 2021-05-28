@@ -8,7 +8,7 @@ class Post(models.Model):
         User, verbose_name="Пользователь", db_index=True,
         related_name="posts", on_delete=models.CASCADE
     )
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField("Время создания", auto_now_add=True)
     title = models.CharField("Заголовок", max_length=100, null=True)
     text = models.TextField("Текст поста", max_length=500, null=True)
     picture = models.ImageField(upload_to="pics/%Y/%m/%d", null=True)
