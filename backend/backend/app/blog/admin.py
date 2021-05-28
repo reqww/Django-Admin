@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.db.models import Value
 from django.db.models.functions import Concat
+from django.utils.translation import ngettext
+from django.contrib import messages
 
 from .models import Post
 from .forms import PostForm
@@ -23,6 +25,15 @@ def count_likes(obj):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
+    @admin.action(description='Make published', permissions=['change'])
+    def make_published(self, request, queryset):
+        updated = queryset.update(draft=False)
+        self.message_user(request, ngettext(
+            '%d post was successfully marked as published.',
+            '%d posts were successfully marked as published.',
+            updated,
+        ) % updated, messages.SUCCESS)
+
     # Удобный фильтр по датам
     date_hierarchy = 'timestamp'
     # Нулевые значения замененные чем-либо
@@ -45,6 +56,8 @@ class PostAdmin(admin.ModelAdmin):
     # save_on_top = True
     # Искать по след. полям
     search_fields = ['user__email']
+    # Пользовательские действия
+    actions = [make_published]
 
 
     # fields = ("user", ("title", "text"), "picture")

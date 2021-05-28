@@ -9,6 +9,7 @@ class Post(models.Model):
         related_name="posts", on_delete=models.CASCADE
     )
     timestamp = models.DateTimeField("Время создания", auto_now_add=True)
+    snake_case_test_field = models.CharField(max_length=100, default='test')
     title = models.CharField("Заголовок", max_length=100, null=True)
     text = models.TextField("Текст поста", max_length=500, null=True)
     picture = models.ImageField(upload_to="pics/%Y/%m/%d", null=True)
