@@ -1,13 +1,14 @@
 from django.db import models
 
+
 class Client(models.Model):
-    REGULAR = 'R'
-    GOLD = 'G'
-    PLATINUM = 'P'
+    REGULAR = "R"
+    GOLD = "G"
+    PLATINUM = "P"
     ACCOUNT_TYPE_CHOICES = [
-        (REGULAR, 'Regular'),
-        (GOLD, 'Gold'),
-        (PLATINUM, 'Platinum'),
+        (REGULAR, "Regular"),
+        (GOLD, "Gold"),
+        (PLATINUM, "Platinum"),
     ]
     name = models.CharField(max_length=50)
     registered_on = models.DateField()

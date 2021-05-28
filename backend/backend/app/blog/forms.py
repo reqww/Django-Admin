@@ -3,6 +3,7 @@ from django import forms
 
 from .models import Post
 
+
 class PostForm(ModelForm):
     title = forms.CharField(required=False)
     text = forms.CharField(widget=forms.Textarea, required=False)
@@ -12,4 +13,4 @@ class PostForm(ModelForm):
 
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = "__all__"
