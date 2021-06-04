@@ -54,7 +54,10 @@ class Like(models.Model):
     """Лайк"""
 
     post = models.ForeignKey(
-        Post, verbose_name="Пост", related_name="likes", on_delete=models.CASCADE
+        Post,
+        verbose_name="Пост",
+        related_name="likes",
+        on_delete=models.CASCADE,
     )
     user = models.ForeignKey(
         User,
